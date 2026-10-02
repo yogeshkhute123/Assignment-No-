@@ -30,6 +30,25 @@ Options: `--max-depth`, `--workers`, `--delay`, `--ignore-robots`, `--skip-exter
 - **JavaScript-rendered sites**: pages are fetched as raw HTML, so content added by client-side JS is not seen.
 - Page speed is server response time only, not Core Web Vitals (use PageSpeed Insights API for those).
 
+## Content Gap & Topic Planner (`seo_audit/planner.py`)
+
+Finds topics your site has **not** covered yet. It crawls your site, expands your seed topics into related searches, and
+compares each keyword with your existing titles, H1s, URLs and sub-headings.
+
+```bash
+python -m seo_audit.planner --site https://example.com --seed "yoga mats" --seed "yoga retreat" --out content_plan
+python -m seo_audit.planner --site https://example.com --keywords-csv keyword_planner_export.csv
+```
+
+Output `content_plan.xlsx`: **Topic Clusters** (what to write, with priority, page type and suggested title), **Gap Keywords**,
+**Partially Covered** (existing page to expand), **Already Covered**, **Summary**.
+
+- Keyword ideas come from Google autocomplete (free, no volumes) and/or a CSV with `keyword`, `volume`, `difficulty` columns
+  (Google Keyword Planner, Semrush, Ahrefs). With volumes, priority uses them; without, it uses autocomplete rank.
+- Matching is word-based (light stemming), not semantic, so check borderline "Partial" results by hand.
+- Suggested titles are templates; use Claude to polish them or write the outlines.
+- Autocomplete is an unofficial Google endpoint and may be rate-limited or blocked on some networks; the CSV route always works.
+
 ### Tests
 
 ```bash
