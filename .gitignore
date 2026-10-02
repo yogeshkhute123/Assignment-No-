@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+seo_report.*
+.pytest_cache/

@@ -1,0 +1,7 @@
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+openpyxl>=3.1
+pyspellchecker>=0.8
+# optional: better grammar checking (needs Java)
+# language_tool_python
